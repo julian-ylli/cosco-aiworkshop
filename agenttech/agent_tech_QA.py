@@ -82,19 +82,18 @@ def should_continue(state: AgentState):
 builder = StateGraph(MessagesState)
 
 # Define nodes: these do the work
-builder.add_node("assistant", assistant)
-builder.add_node("tools", tool_node)
+# TODO: 建立assistant节点和tools节点
+
+# TODO: 图从START开始后，进入assistant
 
 # Define edges: these determine how the control flow moves
-builder.add_edge(START, "assistant")
+
 builder.add_conditional_edges(
     "assistant",
-    # If the latest message (result) from assistant is a tool call -> tools_condition routes to tools
-    # If the latest message (result) from assistant is a not a tool call -> tools_condition routes to END
     should_continue,
     {"continue": "tools", "end": END},
 )
-builder.add_edge("tools", "assistant")
+# TODO: 图从tools节点回流到assistant节点，构建react
 
 
 graph = builder.compile()

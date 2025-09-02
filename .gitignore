@@ -1,3 +1,4 @@
 agenttech/.env
 Retrieval_techs/notebook/.env
 Retrieval_techs/notebook/retrieval.ipynb
+Retrieval_techs/notebook/db/

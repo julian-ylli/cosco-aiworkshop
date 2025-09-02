@@ -26,7 +26,6 @@ def create_mcp_client():
                 "awslabs.aws-documentation-mcp-server": {
                     "command": "uvx",
                     "args": ["awslabs.aws-documentation-mcp-server@latest"],
-                    "transport": "streamable_http",
                     "transport": "stdio"
                 }
             }

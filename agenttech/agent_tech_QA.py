@@ -56,21 +56,22 @@ class AgentState(TypedDict):
 tools_by_name = {tool.name: tool for tool in tools}
 
 def tool_node(state: AgentState):
-    # TODO: 实现工具节点的逻辑
-    # 目标: 处理模型生成的工具调用，执行相应的工具，并将结果作为ToolMessage返回。
-    # 返回结构 - dict {"messages": [ToolMessage]}
-    # 具体步骤:
-    # 1. 遍历 `state["messages"]` 中最新消息的所有 `tool_calls`。
-    # 2. 对于每个 `tool_call`，根据其 `name` 从 `tools_by_name` 字典中找到对应的工具。
-    # 3. 使用 `tool.invoke(tool_call["args"])` 执行工具，并获取结果。
-    # 4. 将工具结果封装成 `ToolMessage` 对象，包括 `content` (JSON格式的工具结果), `name`, 和 `tool_call_id`。
-    # 5. 将所有 `ToolMessage` 收集到一个列表中，并作为 `{"messages": outputs}` 返回。
     outputs = []
+    for tool_call in state["messages"][-1].tool_calls:
+        tool_result = tools_by_name[tool_call["name"]].invoke(tool_call["args"])
+        outputs.append(
+            ToolMessage(
+                content=json.dumps(tool_result),
+                name=tool_call["name"],
+                tool_call_id=tool_call["id"],
+            )
+        )
     return {"messages": outputs}
 
 def should_continue(state: AgentState):
     # TODO: 实现条件判断逻辑
     # 目标: 根据最新消息是否包含工具调用来决定流程是继续 (continue) 还是结束 (end)。
+    # 返回结构 - 字符串 "continue" 或 "end"
     # 具体步骤:
     # 1. 获取 `state["messages"]` 中的最后一条消息。
     # 2. 检查 `last_message.tool_calls` 是否存在或为空。

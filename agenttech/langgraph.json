@@ -2,8 +2,7 @@
   "dockerfile_lines": [],
   "graphs": {
     "agent_tech_QA": "./agent_tech_QA.py:graph",
-    "agent_tech_QA_MCP": "./agent_tech_QA_MCP.py:graph",
-    "agent_tech_QA_MCP_router": "./agent_tech_QA_MCP_router.py:graph"
+    "agent_tech_QA_MCP": "./agent_tech_QA_MCP.py:graph"
   },
   "env": "./.env",
   "python_version": "3.11",

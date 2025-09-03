@@ -1,0 +1,7 @@
+openai==1.105.0
+pandas==2.3.2
+tqdm==4.67.1
+python-dotenv==1.1.1
+langchain-community==0.3.27
+langchain-openai==0.3.32
+numpy==2.3.1

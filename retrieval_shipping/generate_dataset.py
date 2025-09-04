@@ -21,33 +21,14 @@ def create_golden_dataset(
         raise ValueError("Length of ids must match length of documents")
     
     queries: List[str] = []
-    
+    # TODO: 系统指令，需要让AI生成测试集
     SYSTEM_INSTRUCTION = f"""
-        您是一名专门用于生成查询以整理高质量合成数据集的助理。
-
-        只需输出查询内容，无需任何额外文字或格式。
+        
         """
 
     for id, document in tqdm(zip(ids, documents), total=len(ids), desc="Generating queries"):
+        # TODO: 结合背景信息，文档，案例query，语言四种信息的prompt模板
         PROMPT = f"""
-            请考虑以下背景信息：
-            {context}
-
-            根据以下文本片段：
-            <text>
-            {document}
-            <text>
-
-            请生成一个用户可能会提出的、与上述信息相关的现实查询。
-
-            以下是一些用户提问过的示例查询，您在生成查询时应予以参考：
-            <example-queries>
-            {example_queries}
-            <example-queries>
-
-            请勿重复示例查询，它们仅用于帮助您了解用户提问的类型。请确保您的查询与上述提供的信息相关，并保持与示例查询相似的风格，即不一定总是完整的问句形式。
-
-            只需输出查询内容，无需任何额外文字。你的输出语言必须为{language}。
             """
 
         completion = client.chat.completions.create(

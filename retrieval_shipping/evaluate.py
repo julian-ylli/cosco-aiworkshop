@@ -2,37 +2,14 @@ import pandas as pd
 import numpy as np
 
 def calculate_recall_at_k(relevant_ids, retrieved_ids, k):
-    if not relevant_ids:
-        return 0.0
-    retrieved_at_k = set(retrieved_ids[:k])
-    num_relevant_retrieved = len(set(relevant_ids).intersection(retrieved_at_k))
-    return num_relevant_retrieved / len(relevant_ids)
-
+    # TODO: 实现该指标
+    return 0.0
 def calculate_ndcg_at_k(relevant_ids, retrieved_ids, k):
-    if not relevant_ids:
-        return 0.0
-
-    dcg = 0.0
-    idcg = 0.0
-
-    for i, item_id in enumerate(retrieved_ids[:k]):
-        if item_id in relevant_ids:
-            dcg += 1.0 / np.log2(i + 2)
-
-    for i, item_id in enumerate(relevant_ids[:k]): # Assuming relevant_ids are perfectly ranked
-        idcg += 1.0 / np.log2(i + 2)
-    
-    if idcg == 0.0:
-        return 0.0
-
-    return dcg / idcg
+    # TODO: 实现该指标
+    return 0.0
 
 def calculate_mrr_at_k(relevant_ids, retrieved_ids, k):
-    if not relevant_ids:
-        return 0.0
-    for i, item_id in enumerate(retrieved_ids[:k]):
-        if item_id in relevant_ids:
-            return 1.0 / (i + 1)
+    # TODO: 实现该指标
     return 0.0
 
 def evaluate_retrieval(experiment_df, k=3):

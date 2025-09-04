@@ -15,20 +15,20 @@ def create_mcp_client():
             {
                 "read_arch_doc": {
                     "command": "python",
-                    # "args": ["mcp_server.py"],
-                    "args": ["mcp_from_scratch.py"],
+                    "args": ["mcp_server.py"],
+                    # "args": ["mcp_from_scratch.py"],
                     "transport": "stdio",
                 },
-                "microsoft.docs.mcp": {
-                    "transport": "streamable_http",
-                    "url": "https://learn.microsoft.com/api/mcp",
-                },
-                "awslabs.aws-documentation-mcp-server": {
-                    "command": "uvx",
-                    "args": ["awslabs.aws-documentation-mcp-server@latest"],
-                    "transport": "streamable_http",
-                    "transport": "stdio"
-                }
+                # "microsoft.docs.mcp": {
+                #     "transport": "streamable_http",
+                #     "url": "https://learn.microsoft.com/api/mcp",
+                # },
+                # "awslabs.aws-documentation-mcp-server": {
+                #     "command": "uvx",
+                #     "args": ["awslabs.aws-documentation-mcp-server@latest"],
+                #     "transport": "streamable_http",
+                #     "transport": "stdio"
+                # }
             }
         )
         print("✅ MCP客户端创建成功")
@@ -62,7 +62,7 @@ async def initialize_tools():
     # 定义LLM并绑定工具
 
     llm = ChatOpenAI(
-        model="gemini-2.5-flash",
+        model="deepseek-chat",
         openai_api_key=os.environ.get("OPENAI_API_KEY"),
         openai_api_base=os.environ.get("OPENAI_API_BASE")
     )

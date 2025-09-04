@@ -3,4 +3,3 @@ Retrieval_techs/notebook/.env
 Retrieval_techs/notebook/retrieval.ipynb
 retrieval_shipping/db/
 retrieval_shipping/.env
-retrieval_shipping/**.csv
